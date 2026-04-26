@@ -1,0 +1,19 @@
+name: CI
+ 
+on:
+  pull_request:
+    branches: [master]
+  push:
+    branches: [master]
+ 
+jobs:
+  pipeline:
+    uses: HospitalManagementSystem-HMS/Hospital-Management/.github/workflows/backend-template.yaml@dev
+ 
+    with:
+      service: "notification-service"
+      image: "ghcr.io/HospitalManagementSystem-HMS/notification-service"
+      sonar_key: "HospitalManagementSystem-HMS_notification-service_f98da4f7-0a82-4b28-ab08-222b92ae0041"
+      trigger: ${{ github.event_name }}
+ 
+    secrets: inherit
